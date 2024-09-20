@@ -112,4 +112,7 @@ return {
 			require("lsp_signature").setup({})
 		end,
 	},
+	{
+		'davidbeckingsale/writegood.vim',
+	},
 }
