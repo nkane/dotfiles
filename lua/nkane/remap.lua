@@ -60,6 +60,8 @@ vim.keymap.set("n", "<C-j>", "<cmd>lua require'luasnip'.jump(1)<CR>")
 vim.keymap.set("i", "<C-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>")
 vim.keymap.set("n", "<C-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>")
 
+vim.keymap.set("n", "<leader>gtf", "<cmd>GoTestFunc<CR>")
+
 vim.keymap.set("n", "<leader>o", "o<Esc>")
 
 vim.keymap.set("n", "<C-i>", "i<CR><ESC>")
