@@ -44,7 +44,7 @@ return {
 				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 			})
 
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				filetypes = {
 					"html",
@@ -111,5 +111,8 @@ return {
 		config = function()
 			require("lsp_signature").setup({})
 		end,
+	},
+	{
+		'davidbeckingsale/writegood.vim',
 	},
 }
