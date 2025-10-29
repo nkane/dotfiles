@@ -7,7 +7,7 @@ return {
 			provider = "copilot",
 			providers = {
 				copilot = {
-					model = "gpt-4o-2024-05-13", -- can be gpt-4o-2024-05-13, claude-3.5-sonnet, etc
+					model = "claude-4.5-sonnet", -- fixed typo, removed trailing comma
 				},
 			},
 			behaviour = {
@@ -16,6 +16,37 @@ return {
 				auto_set_keymaps = true,
 			},
 			hints = { enabled = true },
+			windows = {
+				position = "right", -- right, left, top, bottom
+				wrap = true,
+				width = 30, -- percentage of editor width
+				sidebar_header = {
+					align = "center",
+					rounded = true,
+				},
+			},
+			mappings = {
+				ask = "<leader>aa",
+				edit = "<leader>ae",
+				refresh = "<leader>ar",
+				toggle = {
+					debug = "<leader>ad",
+					hint = "<leader>ah",
+				},
+			},
+		},
+		keys = {
+			{ "<leader>aa", "<cmd>AvanteAsk<cr>", desc = "Avante: Ask" },
+			{ "<leader>ar", "<cmd>AvanteRefresh<cr>", desc = "Avante: Refresh" },
+			{ "<leader>ae", "<cmd>AvanteEdit<cr>", desc = "Avante: Edit" },
+			{ "<leader>at", "<cmd>AvanteToggle<cr>", desc = "Avante: Toggle" },
+			-- This command shows the current provider and model
+			{ "<leader>ai", function()
+				local config = require("avante.config")
+				local provider = config.provider
+				local model = config.providers[provider] and config.providers[provider].model or "unknown"
+				vim.notify("Provider: " .. provider .. "\nModel: " .. model, vim.log.levels.INFO)
+			end, desc = "Avante: Show Provider Info" },
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
