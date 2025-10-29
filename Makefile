@@ -7,13 +7,13 @@ nvim-install-nightly-ppa: ## install nightly neovim ppa
 	sudo apt install neovim -y
 	
 nvim-subtree-init: ## init nvim lua configuration via subtree
-	git subtree add --prefix nvim/.config/nvim https://github.com/nkane/init.lua main --squash
+	git subtree add --prefix nvim/.config/nvim git@github.com:nkane/init.lua.git main --squash
 
 nvim-subtree-pull: ## pull nvim lua configuration via subtree
-	git subtree pull --prefix nvim/.config/nvim https://github.com/nkane/init.lua main --squash
+	git subtree pull --prefix nvim/.config/nvim git@github.com:nkane/init.lua.git main --squash
 
 nvim-subtree-push: ## push nvim lua configuration changes to subtree remote
-	git subtree push --prefix nvim/.config/nvim https://github.com/nkane/init.lua main
+	git subtree push --prefix nvim/.config/nvim git@github.com:nkane/init.lua.git main
 
 tmux-tpm-install: ## install tpm by cloning github repo to ~/.tmux/plugins/tpm
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
