@@ -20,7 +20,56 @@ return {
       "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
       "ibhagwan/fzf-lua",              -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      {
+        "zbirenbaum/copilot.lua",      -- for providers='copilot'
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+          require("copilot").setup({
+            panel = {
+              enabled = true,
+              auto_refresh = false,
+              keymap = {
+                jump_prev = "[[",
+                jump_next = "]]",
+                accept = "<CR>",
+                refresh = "gr",
+                open = "<M-CR>"
+              },
+              layout = {
+                position = "bottom", -- | top | left | right
+                ratio = 0.4
+              },
+            },
+            suggestion = {
+              enabled = true,
+              auto_trigger = false,
+              debounce = 75,
+              keymap = {
+                accept = "<M-l>",
+                accept_word = false,
+                accept_line = false,
+                next = "<M-]>",
+                prev = "<M-[>",
+                dismiss = "<C-]>",
+              },
+            },
+            filetypes = {
+              yaml = false,
+              markdown = false,
+              help = false,
+              gitcommit = false,
+              gitrebase = false,
+              hgcommit = false,
+              svn = false,
+              cvs = false,
+              ["."] = false,
+            },
+            copilot_node_command = 'node', -- Node.js version must be > 18.x
+            server_opts_overrides = {},
+          })
+        end,
+      },
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
