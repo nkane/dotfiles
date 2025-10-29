@@ -1,20 +1,5 @@
 return {
   {
-    "github/copilot.vim",
-    event = "InsertEnter",
-    config = function()
-      -- Optional: disable tab mapping and use your own
-      vim.g.copilot_no_tab_map = true
-
-      -- Example: Map <C-J> to accept Copilot suggestion
-      vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', {
-        silent = true,
-        expr = true,
-        noremap = true,
-      })
-    end,
-  },
-  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
