@@ -5,6 +5,17 @@ return {
 		version = false, -- Never set this value to "*"! Never!
 		opts = {
 			provider = "copilot",
+			providers = {
+				copilot = {
+					model = "gpt-4o-2024-05-13", -- can be gpt-4o-2024-05-13, claude-3.5-sonnet, etc
+				},
+			},
+			behaviour = {
+				auto_suggestions = false,
+				auto_set_highlight_group = true,
+				auto_set_keymaps = true,
+			},
+			hints = { enabled = true },
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
