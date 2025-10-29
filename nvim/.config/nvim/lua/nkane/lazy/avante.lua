@@ -2,6 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    lazy = false,
     version = false, -- Never set this value to "*"! Never!
     opts = {
       provider = "copilot"
@@ -21,7 +22,7 @@ return {
       "ibhagwan/fzf-lua",              -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
       {
-        "zbirenbaum/copilot.lua",      -- for providers='copilot'
+        "zbirenbaum/copilot.lua",        -- for providers='copilot'
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
@@ -43,7 +44,7 @@ return {
             },
             suggestion = {
               enabled = true,
-              auto_trigger = false,
+              auto_trigger = true,
               debounce = 75,
               keymap = {
                 accept = "<M-l>",
