@@ -83,10 +83,10 @@ return {
 			vim.keymap.set("n", "<leader>vhh", vim.lsp.buf.signature_help, {})
 		end,
 	},
-	{
-		"ray-x/lsp_signature.nvim",
-		config = function()
-			require("lsp_signature").setup({})
-		end,
-	},
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	config = function()
+	-- 		require("lsp_signature").setup({})
+	-- 	end,
+	-- },
 }
