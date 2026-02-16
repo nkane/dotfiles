@@ -1,0 +1,75 @@
+export ZSH="$HOME/.oh-my-zsh"
+export CODE_PATH=$HOME/Dev
+export GOPATH=$HOME/gocode
+export GOROOT="/usr/local/go"
+export GOBIN="$HOME/bin"
+export GO111MODULE=auto
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='3;33'
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+export VISUAL=vim
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+export EDITOR="$VISUAL"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=$PATH:$GOROOT/bin:$HOME/.npm-global/bin:$HOME/bin:$HOME/bin/nodejs/bin:/usr/local/opt/mysql-client/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/bin/4coder:$HOME/anaconda3/pkgs:/usr/local/bin:$GOBIN:$HOME/scripts
+
+alias phpx='XDEBUG_CONFIG="profiler_enable=1" php'
+alias locate="mdfind -name $1"
+alias gf='git-flow'
+alias ls='ls -G'
+alias ll='ls -aFl'
+alias mv='mv -i'
+alias rm='rm -i'
+alias psqlconsole='psql -U postgres'
+alias psqllog='sudo tail -f /var/log/postgresql-10/postgresql-10.log'
+alias psqlstatus='sudo service postgresql-10 status'
+alias psqlstart='sudo service postgresql-10 start'
+alias psqlstop='sudo service postgresql-10 stop'
+alias psqlrs='sudo service postgresql-10 restart'
+alias dockerstatus='sudo service docker status'
+alias dockerstart='sudo service docker start'
+alias dockerstop='sudo service docker stop'
+alias dockerrs='sudo service docker restart'
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+alias gg='go get -v -u'
+alias services='service --status-all'
+alias dep-rm='rm -rfv $GOPATH/pkg/dep/sources'
+alias battery='ioreg -w0 -l | grep Capacity | cut -d " " -f 17-50'
+
+complete -o default -W "${SSH_KNOWN_HOSTS[*]} ${SSH_CONFIG_HOSTS[*]}" ssh
+
+# grep for a process
+function psg {
+  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
+  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
+  ps aux | grep "[$FIRST]$REST"
+}
+
+dka()
+{
+    docker rm $(docker ps -a -q) -f
+}
+
+drm()
+{
+    docker rm $(docker ps -a -q) -f
+    docker rmi $(docker images -a -q)
+    docker rmi $(docker images -a --filter=dangling=true -q)
+    docker rm $(docker ps --filter=status=exited --filter=status=created -q)
+    docker system prune -a
+    docker image prune -a
+    docker container prune -a
+    docker volume prune -a
+    docker network prune -a
+}
+
+ZSH_THEME="avit"
+DISABLE_AUTO_TITLE="true"
+zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' frequency 30
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+

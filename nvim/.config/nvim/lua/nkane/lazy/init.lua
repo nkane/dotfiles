@@ -19,9 +19,6 @@ return {
         'nvim-tree/nvim-web-devicons'
     },
     {
-        'nvim-treesitter/playground'
-    },
-    {
         'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup()

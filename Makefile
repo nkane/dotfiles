@@ -31,7 +31,6 @@ tmux-install: ## install tmux
 	sudo apt install tmux -y
 
 zsh-install: ## install omzsh
-	sudo apt install zsh
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 zsh-install-plugins: ## install omzsh plugins
