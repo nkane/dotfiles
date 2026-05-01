@@ -93,14 +93,12 @@ return {
 				filetypes = { "md", "markdown" },
 			}
 
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
 			vim.keymap.set("n", "gD", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+			vim.keymap.set("n", "K", function()
+				vim.lsp.buf.hover({ border = "rounded" })
+			end, {})
 			vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, {})
 			vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, {})
