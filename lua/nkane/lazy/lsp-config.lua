@@ -1,8 +1,16 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		opts = {
-			lua_ls = {
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
+		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			-- Use vim.lsp.config instead of lspconfig
+			vim.lsp.config.lua_ls = {
+				cmd = { "lua-language-server" },
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
@@ -26,25 +34,17 @@ return {
 						},
 					},
 				},
-			},
-		},
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			local util = require("lspconfig/util")
+			}
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
+			vim.lsp.config.gopls = {
 				cmd = { "gopls" },
+				capabilities = capabilities,
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
-				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-			})
+				root_markers = { "go.work", "go.mod", ".git" },
+			}
 
-			lspconfig.ts_ls.setup({
+			vim.lsp.config.ts_ls = {
+				cmd = { "typescript-language-server", "--stdio" },
 				capabilities = capabilities,
 				filetypes = {
 					"html",
@@ -59,33 +59,39 @@ return {
 					"typescript",
 					"javascript",
 				},
-			})
+			}
 
-			lspconfig.eslint.setup({
+			vim.lsp.config.eslint = {
+				cmd = { "vscode-eslint-language-server", "--stdio" },
 				capabilities = capabilities,
-			})
+			}
 
-			lspconfig.mdx_analyzer.setup({
+			vim.lsp.config.mdx_analyzer = {
+				cmd = { "mdx-language-server", "--stdio" },
 				capabilities = capabilities,
 				filetypes = { "mdx" },
-			})
+			}
 
-			lspconfig.tailwindcss.setup({
+			vim.lsp.config.tailwindcss = {
+				cmd = { "tailwindcss-language-server", "--stdio" },
 				capabilities = capabilities,
-			})
+			}
 
-			lspconfig.pylsp.setup({
+			vim.lsp.config.pylsp = {
+				cmd = { "pylsp" },
 				capabilities = capabilities,
-			})
+			}
 
-			lspconfig.html.setup({
+			vim.lsp.config.html = {
+				cmd = { "vscode-html-language-server", "--stdio" },
 				capabilities = capabilities,
-			})
+			}
 
-			lspconfig.marksman.setup({
+			vim.lsp.config.marksman = {
+				cmd = { "marksman", "server" },
 				capabilities = capabilities,
 				filetypes = { "md", "markdown" },
-			})
+			}
 
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 				border = "rounded",
