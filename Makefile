@@ -18,6 +18,10 @@ nvim-subtree-push: ## push nvim lua configuration changes to subtree remote
 tmux-tpm-install: ## install tpm by cloning github repo to ~/.tmux/plugins/tpm
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+caveman-install: ## install caveman Claude Code plugin from JuliusBrussee/caveman
+	claude plugin marketplace add JuliusBrussee/caveman
+	claude plugin install caveman@caveman
+
 linux-homebrew-install: ## install linux homebrew
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
