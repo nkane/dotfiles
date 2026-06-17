@@ -150,7 +150,17 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/bin:$HOME/.pyenv/bin
 # export SSH_AGENT_PID
 # export SSH_AUTH_SOCK
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(starship init zsh)"
+# brew shellenv — detect prefix per platform
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
