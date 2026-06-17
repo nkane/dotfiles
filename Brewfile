@@ -16,6 +16,7 @@ brew "nvm"
 brew "go"
 brew "tree-sitter"
 brew "lsd"
+brew "gh"
 
 # tmux plugin manager (drop-in tpm replacement)
 tap "tmuxpack/tpack"
