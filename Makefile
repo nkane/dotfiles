@@ -17,7 +17,7 @@ bootstrap: bootstrap-$(OS) ## OS-aware full bootstrap
 # ────────────────────────────────────────────────────────────────────────────
 # macOS
 # ────────────────────────────────────────────────────────────────────────────
-bootstrap-macos: brew-install brewfile-install zsh-install zsh-install-plugins tmux-tpm-install nvim-subtree-init stow-macos ssh-enable-macos ## macOS full bootstrap
+bootstrap-macos: brew-install brewfile-install zsh-install zsh-install-plugins nvim-subtree-init stow-macos ssh-enable-macos ## macOS full bootstrap
 
 brew-install: ## install homebrew (macos + linux)
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -39,7 +39,7 @@ stow-macos: ## stow macOS-relevant configs
 # ────────────────────────────────────────────────────────────────────────────
 # Linux (apt — Ubuntu/Debian)
 # ────────────────────────────────────────────────────────────────────────────
-bootstrap-linux: linux-homebrew-install zsh-install zsh-install-plugins tmux-install tmux-tpm-install stow-install ripgrep-install lua-install pyenv-install go-install fonts-install starship-install kitty-install nvim-install-nightly-ppa nvim-subtree-init stow-linux ssh-enable-service ## linux full bootstrap
+bootstrap-linux: linux-homebrew-install zsh-install zsh-install-plugins tmux-install tpack-install stow-install ripgrep-install lua-install pyenv-install go-install fonts-install starship-install kitty-install nvim-install-nightly-ppa nvim-subtree-init stow-linux ssh-enable-service ## linux full bootstrap
 
 linux-homebrew-install: ## install linux homebrew
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -140,8 +140,11 @@ zsh-install: ## install oh-my-zsh
 zsh-install-plugins: ## install omzsh plugins
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-tmux-tpm-install: ## install tpm
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tpack-install: ## install tpack (tmux plugin manager, tpm replacement)
+	brew install tmuxpack/tpack/tpack
+
+tpack-plugins-install: ## install plugins declared in tmux.conf via tpack
+	tpack install
 
 nvim-subtree-init: ## init nvim lua via subtree
 	git subtree add --prefix nvim/.config/nvim git@github.com:nkane/init.lua.git main --squash

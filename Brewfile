@@ -17,6 +17,10 @@ brew "go"
 brew "tree-sitter"
 brew "lsd"
 
+# tmux plugin manager (drop-in tpm replacement)
+tap "tmuxpack/tpack"
+cask "tpack"
+
 # GUI / apps
 cask "kitty"
 
